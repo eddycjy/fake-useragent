@@ -15,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/browser.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="212" />
-    <option name="y" value="102" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="823" />
   </component>
@@ -134,6 +133,16 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestDownload_Get$" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="fake-useragent" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <package value="github.com/EDDYCJY/fake-useragent" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
     </configuration>
     <configuration name="browser_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="fake-useragent" />
@@ -590,7 +599,7 @@
     <entry file="file://$PROJECT_DIR$/browser.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
-          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
         </state>
       </provider>
     </entry>
