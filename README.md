@@ -10,7 +10,7 @@ $ go get github.com/EDDYCJY/fake-useragent
 
 ## Usage
 
-```
+``` go
 package main
 
 import (
