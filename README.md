@@ -94,6 +94,6 @@ IPad: Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, 
 
 ## Note
 
-If used for the first time, useragent will collect data and create files in a temporary directory, please wait a few seconds
+If used for the first time, useragent will collect data and create a file in the temporary directory as a file cache, please wait a few seconds
 
 
