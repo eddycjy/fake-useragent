@@ -1,6 +1,6 @@
 # Fake Useragent
 
-A random useragent
+A wide variety of random useragents
 
 ## Installation
 
