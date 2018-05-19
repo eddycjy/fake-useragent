@@ -3,6 +3,7 @@ package file
 import (
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 type file struct {
@@ -47,4 +48,13 @@ func (f *file) IsExist() (bool, error) {
 	}
 
 	return false, err
+}
+
+func GetTempDir() string {
+	tempDir := os.TempDir()
+	if exist := strings.HasSuffix(tempDir, "/"); exist == false {
+		tempDir = tempDir + "/"
+	}
+
+	return tempDir
 }

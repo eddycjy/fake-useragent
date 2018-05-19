@@ -1,14 +1,13 @@
 package file
 
 import (
-	"os"
 	"fmt"
 	"testing"
 
 	"github.com/EDDYCJY/fake-useragent/setting"
 )
 
-var f = NewFileCache(os.TempDir(), fmt.Sprintf(setting.TEMP_FILE_TEST_NAME, setting.VERSION))
+var f = NewFileCache(GetTempDir(), fmt.Sprintf(setting.TEMP_FILE_TEST_NAME, setting.VERSION))
 
 func TestFile_Write(t *testing.T) {
 	err := f.Write([]byte("test"))

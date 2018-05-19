@@ -1,7 +1,6 @@
 package browser
 
 import (
-	"os"
 	"fmt"
 	"log"
 	"encoding/json"
@@ -14,7 +13,7 @@ import (
 )
 
 func init() {
- 	fileCache := file.NewFileCache(os.TempDir(), fmt.Sprintf(setting.TEMP_FILE_NAME, setting.VERSION))
+ 	fileCache := file.NewFileCache(file.GetTempDir(), fmt.Sprintf(setting.TEMP_FILE_NAME, setting.VERSION))
 	fileCacheExist, err := fileCache.IsExist()
 	if err != nil {
 		log.Fatalf("fileCache.IsExist err: %v", err)
