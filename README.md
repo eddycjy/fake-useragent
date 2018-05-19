@@ -2,6 +2,8 @@
 
 A wide variety of random useragents
 
+![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
+
 ## Installation
 
 ```
