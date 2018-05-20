@@ -92,8 +92,6 @@ cache := browser.Cache{
 b := browser.NewBrowser(client, cache)
 ```
 
-Close browser temporary file cache (not recommended)
-
 关闭浏览器头的临时文件缓存（不建议使用）
 
 ``` go
