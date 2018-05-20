@@ -23,21 +23,9 @@ func TestInternetExplorer(t *testing.T) {
 	}
 }
 
-func TestOpera(t *testing.T) {
-	if Opera() == "" {
-		t.Error("browser.Opera is empty")
-	}
-}
-
 func TestFirefox(t *testing.T) {
 	if Firefox() == "" {
 		t.Error("browser.Firefox is empty")
-	}
-}
-
-func TestUC(t *testing.T) {
-	if UC() == "" {
-		t.Error("browser.UC is empty")
 	}
 }
 
@@ -80,6 +68,18 @@ func TestIPhone(t *testing.T) {
 func TestIPad(t *testing.T) {
 	if IPad() == "" {
 		t.Error("browser.IPad is empty")
+	}
+}
+
+func TestComputer(t *testing.T) {
+	if Computer() == "" {
+		t.Error("browser.Computer is empty")
+	}
+}
+
+func TestMobile(t *testing.T) {
+	if Mobile() == "" {
+		t.Error("browser.Mobile is empty")
 	}
 }
 

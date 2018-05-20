@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-        // 推荐使用
+	// 推荐使用
 	random := browser.Random()
 	log.Printf("Random: %s", random)
 
@@ -30,14 +30,8 @@ func main() {
 	internetExplorer := browser.InternetExplorer()
 	log.Printf("IE: %s", internetExplorer)
 
-	opera := browser.Opera()
-	log.Printf("Opera: %s", opera)
-
 	firefox := browser.Firefox()
 	log.Printf("Firefox: %s", firefox)
-
-	uc := browser.UC()
-	log.Printf("UC: %s", uc)
 
 	safari := browser.Safari()
 	log.Printf("Safari: %s", safari)
@@ -60,6 +54,11 @@ func main() {
 	ipad := browser.IPad()
 	log.Printf("IPad: %s", ipad)
 
+    computer := browser.Computer()
+    log.Printf("Computer: %s", computer)
+
+    mobile := browser.Mobile()
+    log.Printf("Mobile: %s", mobile)
 }
 ```
 

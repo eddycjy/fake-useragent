@@ -17,16 +17,8 @@ func InternetExplorer() string {
 	return defaultBrowser.InternetExplorer()
 }
 
-func Opera() string {
-	return defaultBrowser.Opera()
-}
-
 func Firefox() string {
 	return defaultBrowser.Firefox()
-}
-
-func UC() string {
-	return defaultBrowser.UC()
 }
 
 func Safari() string {
@@ -57,6 +49,14 @@ func IPad() string {
 	return defaultBrowser.IPad()
 }
 
+func Computer() string {
+	return defaultBrowser.Computer()
+}
+
+func Mobile() string {
+	return defaultBrowser.Mobile()
+}
+
 func (b *browser) Random() string {
 	return useragent.UA.GetAllRandom()
 }
@@ -69,16 +69,8 @@ func (b *browser) InternetExplorer() string {
 	return useragent.UA.GetRandom(setting.INTERNET_EXPLORER)
 }
 
-func (b *browser) Opera() string {
-	return useragent.UA.GetRandom(setting.OPERA)
-}
-
 func (b *browser) Firefox() string {
 	return useragent.UA.GetRandom(setting.FIREFOX)
-}
-
-func (b *browser) UC() string {
-	return useragent.UA.GetRandom(setting.UC)
 }
 
 func (b *browser) Safari() string {
@@ -107,4 +99,12 @@ func (b *browser) IPhone() string {
 
 func (b *browser) IPad() string {
 	return useragent.UA.GetRandom(setting.IPAD)
+}
+
+func (b *browser) Computer() string {
+	return useragent.UA.GetRandom(setting.COMPUTER)
+}
+
+func (b *browser) Mobile() string {
+	return useragent.UA.GetRandom(setting.MOBILE)
 }

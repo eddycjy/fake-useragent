@@ -3,9 +3,7 @@ package setting
 const (
 	CHROME            = "chrome"
 	INTERNET_EXPLORER = "internet-explorer"
-	OPERA             = "opera"
 	FIREFOX           = "firefox"
-	UC                = "uc-browser"
 	SAFARI            = "safari"
 
 	ANDROID  = "android"
@@ -15,6 +13,9 @@ const (
 
 	IPHONE = "iphone"
 	IPAD   = "ipad"
+
+	COMPUTER = "computer"
+	MOBILE = "mobile"
 )
 
 var (
@@ -23,8 +24,6 @@ var (
 			CHROME,
 			INTERNET_EXPLORER,
 			FIREFOX,
-			UC,
-			OPERA,
 			SAFARI,
 		},
 		"operating_system_name": {
@@ -36,6 +35,10 @@ var (
 		"operating_platform": {
 			IPHONE,
 			IPAD,
+		},
+		"hardware_type_specific" : {
+			COMPUTER,
+			MOBILE,
 		},
 	}
 )

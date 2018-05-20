@@ -1,8 +1,8 @@
-# Fake Useragent ![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
+# Fake Useragent
 
 A wide variety of random useragents
 
-[简体中心](https://github.com/EDDYCJY/fake-useragent/blob/master/README_ZH.md)
+![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
 
 ## Installation
 
@@ -22,7 +22,7 @@ import (
 )
 
 func main() {
-        // recommend to use
+	// recommend to use
 	random := browser.Random()
 	log.Printf("Random: %s", random)
 
@@ -32,14 +32,8 @@ func main() {
 	internetExplorer := browser.InternetExplorer()
 	log.Printf("IE: %s", internetExplorer)
 
-	opera := browser.Opera()
-	log.Printf("Opera: %s", opera)
-
 	firefox := browser.Firefox()
 	log.Printf("Firefox: %s", firefox)
-
-	uc := browser.UC()
-	log.Printf("UC: %s", uc)
 
 	safari := browser.Safari()
 	log.Printf("Safari: %s", safari)
@@ -62,6 +56,11 @@ func main() {
 	ipad := browser.IPad()
 	log.Printf("IPad: %s", ipad)
 
+    computer := browser.Computer()
+    log.Printf("Computer: %s", computer)
+
+    mobile := browser.Mobile()
+    log.Printf("Mobile: %s", mobile)
 }
 ```
 
@@ -135,7 +134,7 @@ IPad: Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, 
 
 ## Note
 
-If used for the first time, fake-useragent will collect data and create a file in the temporary directory as a file cache, please wait a few seconds
+If used for the first time, useragent will collect data and create a file in the temporary directory as a file cache, please wait a few seconds
 
 ## TODO
 
