@@ -23,7 +23,7 @@ import (
 )
 
 func main() {
-    // 推荐使用
+        // 推荐使用
 	random := browser.Random()
 	log.Printf("Random: %s", random)
 
