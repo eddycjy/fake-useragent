@@ -1,9 +1,6 @@
-# Fake Useragent
+# Fake Useragent ![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
 
 各种各样的随机浏览器头 😆
-
-
-![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
 
 ## 安装
 
