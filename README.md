@@ -1,8 +1,8 @@
-# Fake Useragent
+# Fake Useragent ![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
 
 A wide variety of random useragents
 
-![image](https://api.travis-ci.org/EDDYCJY/fake-useragent.svg?branch=master)
+[简体中文](https://github.com/EDDYCJY/fake-useragent/blob/master/README_ZH.md)
 
 ## Installation
 
