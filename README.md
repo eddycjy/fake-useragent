@@ -22,6 +22,7 @@ import (
 )
 
 func main() {
+    // recommend to use
 	random := browser.Random()
 	log.Printf("Random: %s", random)
 
@@ -64,6 +65,44 @@ func main() {
 }
 ```
 
+### Customize
+
+You can adjust the maximum number of crawl pages and time intervals, maximum timeouts. If not, it is the default.
+
+``` go
+client := browser.Client{
+	MaxPage: 3,
+	Delay: 200 * time.Millisecond,
+	Timeout: 10 * time.Second,
+}
+cache := browser.Cache{}
+b := browser.NewBrowser(client, cache)
+
+random := b.Random()
+```
+
+Update the browser temporary file cache.
+
+``` go
+client := browser.Client{}
+cache := browser.Cache{
+	UpdateFile: true,
+}
+b := browser.NewBrowser(client, cache)
+```
+
+Close browser temporary file cache (not recommended)
+
+``` go
+client := browser.Client{}
+cache := browser.Cache{
+	CloseFile: true,
+}
+b := browser.NewBrowser(client, cache)
+```
+
+Finally, I recommend the regular usage.
+
 ### Output
 
 ``` sh
@@ -100,6 +139,5 @@ If used for the first time, useragent will collect data and create a file in the
 
 ## TODO
 
-- Cache Switch/Update
-- Cache Server
+- CDN Cache Server
 
