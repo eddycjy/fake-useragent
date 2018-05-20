@@ -1,18 +1,18 @@
 package downloader
 
 import (
-	"time"
-	"net/http"
-	"net"
 	"io"
+	"net"
+	"net/http"
+	"time"
 )
 
 type Download struct {
-	Delay time.Duration
+	Delay   time.Duration
 	Timeout time.Duration
 }
 
-func (d *Download) Get(url string) (io.Reader, error){
+func (d *Download) Get(url string) (io.Reader, error) {
 	time.Sleep(d.Delay)
 	client := &http.Client{
 		Transport: &http.Transport{

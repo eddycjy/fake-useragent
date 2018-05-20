@@ -5,110 +5,106 @@ import (
 	"github.com/EDDYCJY/fake-useragent/useragent"
 )
 
-type Browser struct {}
-
-var DefaultBrowser Browser
-
 func Random() string {
-	return DefaultBrowser.Random()
+	return defaultBrowser.Random()
 }
 
 func Chrome() string {
-	return DefaultBrowser.Chrome()
+	return defaultBrowser.Chrome()
 }
 
 func InternetExplorer() string {
-	return DefaultBrowser.InternetExplorer()
+	return defaultBrowser.InternetExplorer()
 }
 
 func Opera() string {
-	return DefaultBrowser.Opera()
+	return defaultBrowser.Opera()
 }
 
 func Firefox() string {
-	return DefaultBrowser.Firefox()
+	return defaultBrowser.Firefox()
 }
 
 func UC() string {
-	return DefaultBrowser.UC()
+	return defaultBrowser.UC()
 }
 
 func Safari() string {
-	return DefaultBrowser.Safari()
+	return defaultBrowser.Safari()
 }
 
 func Android() string {
-	return DefaultBrowser.Android()
+	return defaultBrowser.Android()
 }
 
 func MacOSX() string {
-	return DefaultBrowser.MacOSX()
+	return defaultBrowser.MacOSX()
 }
 
 func IOS() string {
-	return DefaultBrowser.IOS()
+	return defaultBrowser.IOS()
 }
 
 func Linux() string {
-	return DefaultBrowser.Linux()
+	return defaultBrowser.Linux()
 }
 
 func IPhone() string {
-	return DefaultBrowser.IPhone()
+	return defaultBrowser.IPhone()
 }
 
 func IPad() string {
-	return DefaultBrowser.IPad()
+	return defaultBrowser.IPad()
 }
 
-func (b *Browser) Random() string {
+func (b *browser) Random() string {
 	return useragent.UA.GetAllRandom()
 }
 
-func (b *Browser) Chrome() string {
+func (b *browser) Chrome() string {
 	return useragent.UA.GetRandom(setting.CHROME)
 }
 
-func (b *Browser) InternetExplorer() string {
+func (b *browser) InternetExplorer() string {
 	return useragent.UA.GetRandom(setting.INTERNET_EXPLORER)
 }
 
-func (b *Browser) Opera() string {
+func (b *browser) Opera() string {
 	return useragent.UA.GetRandom(setting.OPERA)
 }
 
-func (b *Browser) Firefox() string {
+func (b *browser) Firefox() string {
 	return useragent.UA.GetRandom(setting.FIREFOX)
 }
 
-func (b *Browser) UC() string {
+func (b *browser) UC() string {
 	return useragent.UA.GetRandom(setting.UC)
 }
 
-func (b *Browser) Safari() string {
+func (b *browser) Safari() string {
 	return useragent.UA.GetRandom(setting.SAFARI)
 }
 
-func (b *Browser) Android() string {
+func (b *browser) Android() string {
 	return useragent.UA.GetRandom(setting.ANDROID)
 }
 
-func (b *Browser) MacOSX() string {
+func (b *browser) MacOSX() string {
 	return useragent.UA.GetRandom(setting.MAC_OS_X)
 }
 
-func (b *Browser) IOS() string {
+func (b *browser) IOS() string {
 	return useragent.UA.GetRandom(setting.IOS)
 }
 
-func (b *Browser) Linux() string {
+func (b *browser) Linux() string {
 	return useragent.UA.GetRandom(setting.LINUX)
 }
 
-func (b *Browser) IPhone() string {
+func (b *browser) IPhone() string {
 	return useragent.UA.GetRandom(setting.IPHONE)
 }
 
-func (b *Browser) IPad() string {
+func (b *browser) IPad() string {
 	return useragent.UA.GetRandom(setting.IPAD)
 }

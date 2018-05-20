@@ -1,6 +1,9 @@
 package browser
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestRandom(t *testing.T) {
 	if Random() == "" {
@@ -77,5 +80,48 @@ func TestIPhone(t *testing.T) {
 func TestIPad(t *testing.T) {
 	if IPad() == "" {
 		t.Error("browser.IPad is empty")
+	}
+}
+
+func TestBrowser_Random(t *testing.T) {
+	b := NewBrowser(Client{
+		MaxPage: 1,
+		Delay: 200 * time.Millisecond,
+		Timeout: 10 * time.Second,
+	}, Cache{
+		UpdateFile: true,
+	})
+
+	if b.Random() == "" {
+		t.Error("NewBrowser.Random is empty")
+	}
+}
+
+func TestBrowser_Chrome(t *testing.T) {
+	b := NewBrowser(Client{
+		MaxPage: 1,
+		Delay: 250 * time.Millisecond,
+		Timeout: 20 * time.Second,
+	}, Cache{
+		CloseFile: true,
+	})
+
+	if b.Chrome() == "" {
+		t.Error("NewBrowser.Chrome is empty")
+	}
+}
+
+func TestBrowser_IOS(t *testing.T) {
+	b := NewBrowser(Client{
+		MaxPage: 1,
+		Delay: 350 * time.Millisecond,
+		Timeout: 20 * time.Second,
+	}, Cache{
+		CloseFile: true,
+		UpdateFile: true,
+	})
+
+	if b.IOS() == "" {
+		t.Error("NewBrowser.IOS is empty")
 	}
 }

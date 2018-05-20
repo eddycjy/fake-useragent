@@ -8,8 +8,8 @@ func PopUrl() string {
 		return ""
 	}
 
-	url := URLs[length - 1]
-	URLs = URLs[:length - 1]
+	url := URLs[length-1]
+	URLs = URLs[:length-1]
 	return url
 }
 

@@ -1,22 +1,21 @@
 package spiders
 
 import (
-	"time"
-	"log"
-	"sync"
 	"fmt"
+	"sync"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 
-	"github.com/EDDYCJY/fake-useragent/setting"
-	"github.com/EDDYCJY/fake-useragent/scheduler"
-	"github.com/EDDYCJY/fake-useragent/useragent"
 	"github.com/EDDYCJY/fake-useragent/downloader"
+	"github.com/EDDYCJY/fake-useragent/scheduler"
+	"github.com/EDDYCJY/fake-useragent/setting"
+	"github.com/EDDYCJY/fake-useragent/useragent"
 )
 
 type Spider struct {
 	Attribute
-	FullUrl  string
+	FullUrl string
 }
 
 type Attribute struct {
@@ -34,9 +33,9 @@ func NewBrowserSpider() *Spider {
 func (a *Attribute) GetSpider() *Spider {
 	return &Spider{
 		Attribute: Attribute{
-			Tag: a.Tag,
+			Tag:      a.Tag,
 			Category: a.Category,
-			Page: a.Page,
+			Page:     a.Page,
 		},
 		FullUrl: fmt.Sprintf(setting.BROWSER_URL, a.Tag, a.Category, a.Page),
 	}
@@ -57,7 +56,7 @@ func (s *Spider) AppendBrowser(maxPage int) {
 func (s *Spider) StartBrowser(delay time.Duration, timeout time.Duration) {
 	var wg sync.WaitGroup
 	count := scheduler.CountUrl()
-	for i := 0; i <= count; i ++ {
+	for i := 0; i <= count; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
@@ -65,12 +64,12 @@ func (s *Spider) StartBrowser(delay time.Duration, timeout time.Duration) {
 				downloader := downloader.Download{Delay: delay, Timeout: timeout}
 				body, err := downloader.Get(url)
 				if err != nil {
-					log.Fatalf("downloader.Get err: %v", err)
+					return
 				}
 
 				doc, err := goquery.NewDocumentFromReader(body)
 				if err != nil {
-					log.Fatalf("goquery.NewDocumentFromReader err: %v", err)
+					return
 				}
 
 				doc.Find("td.useragent a").Each(func(i int, selection *goquery.Selection) {

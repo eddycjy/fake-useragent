@@ -1,20 +1,20 @@
 package setting
 
 const (
-	CHROME = "chrome"
+	CHROME            = "chrome"
 	INTERNET_EXPLORER = "internet-explorer"
-	OPERA = "opera"
-	FIREFOX = "firefox"
-	UC = "uc-browser"
-	SAFARI = "safari"
+	OPERA             = "opera"
+	FIREFOX           = "firefox"
+	UC                = "uc-browser"
+	SAFARI            = "safari"
 
-	ANDROID = "android"
+	ANDROID  = "android"
 	MAC_OS_X = "mac-os-x"
-	IOS = "ios"
-	LINUX = "linux"
+	IOS      = "ios"
+	LINUX    = "linux"
 
 	IPHONE = "iphone"
-	IPAD = "ipad"
+	IPAD   = "ipad"
 )
 
 var (
@@ -27,13 +27,13 @@ var (
 			OPERA,
 			SAFARI,
 		},
-		"operating_system_name" : {
+		"operating_system_name": {
 			ANDROID,
 			MAC_OS_X,
 			IOS,
 			LINUX,
 		},
-		"operating_platform" : {
+		"operating_platform": {
 			IPHONE,
 			IPAD,
 		},

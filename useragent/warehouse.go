@@ -1,8 +1,8 @@
 package useragent
 
 import (
-	"sync"
 	"math/rand"
+	"sync"
 	"time"
 )
 
@@ -13,7 +13,7 @@ type useragent struct {
 
 var (
 	UA = useragent{data: make(map[string][]string)}
-	r = rand.New(rand.NewSource(time.Now().UnixNano()))
+	r  = rand.New(rand.NewSource(time.Now().UnixNano()))
 )
 
 func (u *useragent) Get(key string) []string {
@@ -27,6 +27,10 @@ func (u *useragent) GetAll() map[string][]string {
 func (u *useragent) GetRandom(key string) string {
 	browser := u.Get(key)
 	len := len(browser)
+	if len < 1 {
+		return ""
+	}
+
 	n := r.Intn(len)
 	return browser[n]
 }
@@ -39,6 +43,10 @@ func (u *useragent) GetAllRandom() string {
 	}
 
 	len := len(datas)
+	if len < 1 {
+		return ""
+	}
+
 	n := r.Intn(len)
 	return datas[n]
 }
