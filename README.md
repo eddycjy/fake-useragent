@@ -4,6 +4,22 @@ A wide variety of random useragents
 
 [简体中文](https://github.com/EDDYCJY/fake-useragent/blob/master/README_ZH.md)
 
+## Support
+
+- All User-Agent Random
+- Chrome
+- InternetExplorer (IE)
+- Firefox
+- Safari
+- Android
+- MacOSX
+- IOS
+- Linux
+- IPhone
+- IPad
+- Computer
+- Mobile
+
 ## Installation
 
 ```

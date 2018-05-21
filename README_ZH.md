@@ -2,6 +2,22 @@
 
 各种各样的随机浏览器头 😆
 
+## 支持
+
+- All User-Agent Random
+- Chrome
+- InternetExplorer (IE)
+- Firefox
+- Safari
+- Android
+- MacOSX
+- IOS
+- Linux
+- IPhone
+- IPad
+- Computer
+- Mobile
+
 ## 安装
 
 ```
