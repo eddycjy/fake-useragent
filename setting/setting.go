@@ -3,7 +3,7 @@ package setting
 import "time"
 
 const (
-	VERSION = "0.1.0"
+	VERSION = "0.1.1"
 
 	BROWSER_URL            = "https://developers.whatismybrowser.com/useragents/explore/%s/%s/%d"
 	BROWSER_MAX_PAGE       = 2

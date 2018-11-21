@@ -63,10 +63,10 @@ func (s *Spider) StartBrowser(delay time.Duration, timeout time.Duration) {
 			if url := scheduler.PopUrl(); url != "" {
 				downloader := downloader.Download{Delay: delay, Timeout: timeout}
 				body, err := downloader.Get(url)
-				defer body.Close()
 				if err != nil {
 					return
 				}
+				defer body.Close()
 
 				doc, err := goquery.NewDocumentFromReader(body)
 				if err != nil {
