@@ -94,22 +94,12 @@ b := browser.NewBrowser(client, cache)
 random := b.Random()
 ```
 
-更新浏览器头的临时文件缓存
+更新浏览器临时文件缓存（重新到源获取最新数据）
 
 ``` go
 client := browser.Client{}
 cache := browser.Cache{
 	UpdateFile: true,
-}
-b := browser.NewBrowser(client, cache)
-```
-
-关闭浏览器头的临时文件缓存（不建议使用）
-
-``` go
-client := browser.Client{}
-cache := browser.Cache{
-	CloseFile: true,
 }
 b := browser.NewBrowser(client, cache)
 ```
@@ -145,13 +135,4 @@ Computer: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/5
 
 Mobile: Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
 ```
-
-## 注意
-
-如果第一次使用，fake-useragent 将收集数据并在临时目录中创建一个文件作为文件缓存，请耐心等待几秒钟
-
-## TODO
-
-- CDN Cache Server
-
 

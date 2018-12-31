@@ -96,22 +96,12 @@ b := browser.NewBrowser(client, cache)
 random := b.Random()
 ```
 
-Update the browser temporary file cache.
+Update the browser temporary file cache (re-get the source to get the latest data).
 
 ``` go
 client := browser.Client{}
 cache := browser.Cache{
 	UpdateFile: true,
-}
-b := browser.NewBrowser(client, cache)
-```
-
-Close browser temporary file cache (not recommended)
-
-``` go
-client := browser.Client{}
-cache := browser.Cache{
-	CloseFile: true,
 }
 b := browser.NewBrowser(client, cache)
 ```
@@ -147,12 +137,3 @@ Computer: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/5
 
 Mobile: Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
 ```
-
-## Note
-
-If used for the first time, useragent will collect data and create a file in the temporary directory as a file cache, please wait a few seconds
-
-## TODO
-
-- CDN Cache Server
-
