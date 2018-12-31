@@ -1,34 +1,44 @@
-package file
+package cache
 
 import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"encoding/json"
 )
 
-type file struct {
+type File struct {
 	Dir          string
 	Name         string
 	CompletePath string
 }
 
-func NewFileCache(dir string, name string) *file {
-	return &file{
+func NewFileCache(dir string, name string) *File {
+	return &File{
 		Dir:          dir,
 		Name:         name,
 		CompletePath: dir + name,
 	}
 }
 
-func (f *file) Read() ([]byte, error) {
+func (f *File) Read() ([]byte, error) {
 	return ioutil.ReadFile(f.CompletePath)
 }
 
-func (f *file) Write(data []byte) error {
+func (f *File) Write(data []byte) error {
 	return ioutil.WriteFile(f.CompletePath, data, 0644)
 }
 
-func (f *file) Remove() error {
+func (f *File) WriteJson(v interface{}) error {
+	uasJson, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	return f.Write(uasJson)
+}
+
+func (f *File) Remove() error {
 	err := os.Remove(f.CompletePath)
 	if err != nil {
 		return err
@@ -37,7 +47,7 @@ func (f *file) Remove() error {
 	return nil
 }
 
-func (f *file) IsExist() (bool, error) {
+func (f *File) IsExist() (bool, error) {
 	_, err := os.Stat(f.CompletePath)
 	if err == nil {
 		return true, nil

@@ -102,9 +102,7 @@ func TestBrowser_Chrome(t *testing.T) {
 		MaxPage: 1,
 		Delay: 250 * time.Millisecond,
 		Timeout: 20 * time.Second,
-	}, Cache{
-		CloseFile: true,
-	})
+	}, Cache{})
 
 	if b.Chrome() == "" {
 		t.Error("NewBrowser.Chrome is empty")
@@ -117,7 +115,6 @@ func TestBrowser_IOS(t *testing.T) {
 		Delay: 350 * time.Millisecond,
 		Timeout: 20 * time.Second,
 	}, Cache{
-		CloseFile: true,
 		UpdateFile: true,
 	})
 

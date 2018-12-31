@@ -24,7 +24,6 @@ type Client struct {
 }
 
 type Cache struct {
-	CloseFile  bool
 	UpdateFile bool
 }
 
@@ -32,23 +31,12 @@ var defaultBrowser = NewBrowser(Client{
 	MaxPage: setting.BROWSER_MAX_PAGE,
 	Delay:   setting.HTTP_DELAY,
 	Timeout: setting.HTTP_TIMEOUT,
-}, Cache{
-	CloseFile: false,
-})
+}, Cache{})
 
 func NewBrowser(client Client, cache Cache) *browser {
-	maxPage := client.MaxPage
-	if maxPage > setting.BROWSER_ALLOW_MAX_PAGE || maxPage == 0 {
-		maxPage = setting.BROWSER_MAX_PAGE
-	}
-	delay := client.Delay
-	if delay < setting.HTTP_ALLOW_MIN_DELAY {
-		delay = setting.HTTP_ALLOW_MIN_DELAY
-	}
-	timeout := client.Timeout
-	if timeout == 0 {
-		timeout = setting.HTTP_TIMEOUT
-	}
+	maxPage := setting.GetMaxPage(client.MaxPage)
+	delay := setting.GetDelay(client.Delay)
+	timeout := setting.GetTimeout(client.Timeout)
 
 	b := browser{
 		Client: Client{
@@ -57,7 +45,6 @@ func NewBrowser(client Client, cache Cache) *browser {
 			Timeout: timeout,
 		},
 		Cache: Cache{
-			CloseFile:  cache.CloseFile,
 			UpdateFile: cache.UpdateFile,
 		},
 	}
@@ -65,45 +52,60 @@ func NewBrowser(client Client, cache Cache) *browser {
 }
 
 func (b *browser) load() *browser {
-	fileCache := file.NewFileCache(file.GetTempDir(), fmt.Sprintf(setting.TEMP_FILE_NAME, setting.VERSION))
-	fileCacheExist, err := fileCache.IsExist()
+	fileCache := cache.NewFileCache(cache.GetTempDir(), fmt.Sprintf(setting.TEMP_FILE_NAME, setting.VERSION))
+	fileExist, err := fileCache.IsExist()
 	if err != nil {
 		log.Fatalf("fileCache.IsExist err: %v", err)
 	}
 
-	if b.CloseFile == false && b.UpdateFile == false && fileCacheExist == true {
-		fileRead, err := fileCache.Read()
-		if err != nil {
-			log.Fatalf("fileCache.Read err: %v", err)
+	// handle cache.
+	if b.UpdateFile == false {
+		var (
+			isCache      bool
+			cacheContent []byte
+			m            map[string][]string
+		)
+
+		if fileExist == true {
+			cacheContent, err = fileCache.Read()
+			if err != nil {
+				log.Fatalf("fileCache.Read err: %v", err)
+			}
+			isCache = true
+		} else {
+			rawCache := cache.NewRawCache(setting.CACHE_URL, fmt.Sprintf(setting.TEMP_FILE_NAME, setting.CACHE_VERSION))
+			rawResp, rawExist, err := rawCache.Get()
+			if err == nil && rawExist == true {
+				defer rawResp.Body.Close()
+				rawRead, err := rawCache.Read(rawResp.Body)
+				if err == nil && len(rawRead) > 0 {
+					cacheContent = rawRead
+					isCache = true
+				}
+			}
 		}
 
-		m := make(map[string][]string)
-		json.Unmarshal(fileRead, &m)
-		useragent.UA.SetData(m)
-
-		return b
+		if isCache == true {
+			json.Unmarshal(cacheContent, &m)
+			useragent.UA.SetData(m)
+			if fileExist == false {
+				fileCache.WriteJson(useragent.UA.GetAll())
+			}
+			return b
+		}
 	}
 
+	// handle origin.
 	s := spiders.NewBrowserSpider()
 	s.AppendBrowser(b.MaxPage)
 	s.StartBrowser(b.Delay, b.Timeout)
-
-	if b.CloseFile == true {
-		return b
-	}
-
-	if fileCacheExist == true && b.UpdateFile == true {
+	if fileExist == true && b.UpdateFile == true {
 		err := fileCache.Remove()
 		if err != nil {
 			log.Fatalf("fileCache.Remove err: %v", err)
 		}
 	}
 
-	uasJson, err := json.Marshal(useragent.UA.GetAll())
-	if err != nil {
-		log.Fatalf("ua.json.Marshal err: %v", err)
-	}
-
-	fileCache.Write(uasJson)
+	fileCache.WriteJson(useragent.UA.GetAll())
 	return b
 }

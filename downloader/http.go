@@ -1,7 +1,6 @@
 package downloader
 
 import (
-	"io"
 	"net"
 	"net/http"
 	"time"
@@ -12,15 +11,24 @@ type Download struct {
 	Timeout time.Duration
 }
 
-func (d *Download) Get(url string) (io.ReadCloser, error) {
+func (d *Download) Get(url string) (* http.Response, error) {
 	time.Sleep(d.Delay)
+
 	client := &http.Client{
 		Transport: &http.Transport{
+			Proxy: http.ProxyFromEnvironment,
 			DialContext: (&net.Dialer{
-				Timeout: d.Timeout,
+				Timeout:   d.Timeout,
+				KeepAlive: 30 * time.Second,
+				DualStack: true,
 			}).DialContext,
+			MaxIdleConns:          100,
+			IdleConnTimeout:       90 * time.Second,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
 		},
 	}
+
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -31,5 +39,5 @@ func (d *Download) Get(url string) (io.ReadCloser, error) {
 		return nil, err
 	}
 
-	return resp.Body, nil
+	return resp, nil
 }
