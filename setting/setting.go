@@ -9,8 +9,8 @@ const (
 	BROWSER_MAX_PAGE       = 5
 	BROWSER_ALLOW_MAX_PAGE = 8
 
-	CACHE_VERSION          = "0.2.0"
-	CACHE_URL			   = "https://raw.githubusercontent.com/EDDYCJY/fake-useragent/v0.2.0/static/"
+	CACHE_VERSION = "0.2.0"
+	CACHE_URL     = "https://raw.githubusercontent.com/EDDYCJY/fake-useragent/v0.2.0/static/"
 
 	HTTP_TIMEOUT         = 15 * time.Second
 	HTTP_DELAY           = 100 * time.Millisecond
