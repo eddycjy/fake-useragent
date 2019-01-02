@@ -106,8 +106,6 @@ cache := browser.Cache{
 b := browser.NewBrowser(client, cache)
 ```
 
-Finally, I recommend the regular usage.
-
 ## Output
 
 ``` sh
