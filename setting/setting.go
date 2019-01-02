@@ -12,7 +12,7 @@ const (
 	CACHE_VERSION = "0.2.0"
 	CACHE_URL     = "https://raw.githubusercontent.com/EDDYCJY/fake-useragent/v0.2.0/static/"
 
-	HTTP_TIMEOUT         = 15 * time.Second
+	HTTP_TIMEOUT         = 5 * time.Second
 	HTTP_DELAY           = 100 * time.Millisecond
 	HTTP_ALLOW_MIN_DELAY = 100 * time.Millisecond
 

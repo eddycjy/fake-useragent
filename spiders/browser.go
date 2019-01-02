@@ -2,9 +2,11 @@ package spiders
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/nozzle/throttler"
 
 	"github.com/EDDYCJY/fake-useragent/downloader"
 	"github.com/EDDYCJY/fake-useragent/scheduler"
@@ -52,28 +54,39 @@ func (s *Spider) AppendBrowser(maxPage int) {
 	}
 }
 
-// TODO: use and limit goroutine.
 func (s *Spider) StartBrowser(delay time.Duration, timeout time.Duration) {
 	count := scheduler.CountUrl()
+	th := throttler.New(5, count)
 	for i := 0; i <= count; i++ {
-		if url := scheduler.PopUrl(); url != "" {
-			downloader := downloader.Download{Delay: delay, Timeout: timeout}
-			resp, err := downloader.Get(url)
-			if err != nil {
-				return
-			}
-			defer resp.Body.Close()
+		go func() {
+			var (
+				resp *http.Response
+				doc  *goquery.Document
+				err  error
+			)
+			defer th.Done(err)
 
-			doc, err := goquery.NewDocumentFromReader(resp.Body)
-			if err != nil {
-				return
-			}
-
-			doc.Find("td.useragent a").Each(func(i int, selection *goquery.Selection) {
-				if value := selection.Text(); value != "" {
-					useragent.UA.Set(urlAttributeResults[url].Category, value)
+			if url := scheduler.PopUrl(); url != "" {
+				downloader := downloader.Download{Delay: delay, Timeout: timeout}
+				resp, err = downloader.Get(url)
+				if err != nil {
+					return
 				}
-			})
-		}
+				defer resp.Body.Close()
+
+				doc, err = goquery.NewDocumentFromReader(resp.Body)
+				if err != nil {
+					return
+				}
+
+				doc.Find("td.useragent a").Each(func(i int, selection *goquery.Selection) {
+					if value := selection.Text(); value != "" {
+						useragent.UA.Set(urlAttributeResults[url].Category, value)
+					}
+				})
+			}
+		}()
+
+		th.Throttle()
 	}
 }
